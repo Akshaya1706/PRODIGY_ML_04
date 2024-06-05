@@ -57,13 +57,13 @@ test_generator = datagen.flow_from_directory(
     class_mode='categorical',
     shuffle=False)
 
-# Custom generator to repeat indefinitely
+
 def repeat_generator(generator):
     while True:
         for batch in generator:
             yield batch
 
-# Adjust steps per epoch to fit the small dataset
+
 steps_per_epoch_train = max(1, len(train_generator))
 steps_per_epoch_validation = max(1, len(validation_generator))
 
@@ -90,17 +90,16 @@ for i, class_label in enumerate(class_labels):
     class_accuracies.append(class_accuracy)
     print(f"{class_label}: {class_accuracy:.2f}%")
 
-# Plotting results
+
 plt.figure(figsize=(10, 5))
 
-# Bar chart
 plt.subplot(1, 2, 1)
 plt.bar(class_labels, class_accuracies, color='skyblue')
 plt.xlabel('Food Items')
 plt.ylabel('Accuracy (%)')
 plt.title('Accuracy for Each Food Item')
 
-# Pie chart
+
 plt.subplot(1, 2, 2)
 plt.pie(class_accuracies, labels=class_labels, autopct='%1.1f%%', colors=['skyblue', 'red', 'orange'])
 plt.title('Accuracy Distribution')
